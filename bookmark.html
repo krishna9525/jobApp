@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admitted</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job Applied</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="body"></tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+
+    let book=JSON.parse(localStorage.getItem("BookM"))||[]
+
+
+book.forEach(function(elem,index){
+  
+      let row=document.createElement("tr")
+
+      let Name=document.createElement("td")
+      Name.innerText=elem.Name
+
+
+      let Email=document.createElement("td")
+      Email.innerText=elem.Email
+
+
+      let job=document.createElement("td")
+      job.innerText=elem.Role
+
+
+      
+
+
+
+      let td1=document.createElement("td")
+      td1.innerText="Delete"
+      td1.style.backgroundColor="red"
+      td1.addEventListener("click",function(){
+        deleteFunc(index)
+
+
+      })
+
+row.append(Name,Email,job,td1);
+// console.log(row)
+document.querySelector("tbody").append(row)
+
+
+    })
+  function  deleteFunc(index){
+    book.splice(index,1)
+    console.log(book)
+    window.location.reload()
+    localStorage.setItem("BookM",JSON.stringify(book))
+
+  }
+
+
+
+    //you need to code here
+  </script>
+</html>
